@@ -1,0 +1,4 @@
+rootProject.name = 'menuMenagement'
+include 'api'
+include 'db'
+

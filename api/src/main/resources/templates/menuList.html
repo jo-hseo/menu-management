@@ -1,0 +1,73 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+
+    <link rel="stylesheet"  href="/menulist/menuList.css"/>
+    <link rel="stylesheet"  href="/global.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
+
+<!--    <script src="/menulist/menuList.js" defer></script>-->
+<!--    <script src="/common.js" defer></script>-->
+
+</head>
+<body>
+
+<div class="div">
+    <div class="header">
+        <div class="icon-block">
+            <div class="icon">
+                <b class="icon-text" id="menuIcon">MENU</b>
+            </div>
+        </div>
+        <div class="navigation-list">
+            <div class="sales-input-menu" id="salesInputMenu">
+                <div class="sales-input-menu-text">매출 입력</div>
+            </div>
+            <div class="menu-menage-menu" id="menuMenageMenu">
+                <div class="sales-input-menu-text">메뉴 관리</div>
+            </div>
+        </div>
+        <div class="auth-menu">
+            <div class="logout-menu" id="logoutMenu">
+                <div class="sales-input-menu-text">로그아웃</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="menu-list">
+        <div class="page-title">
+            <b class="page-title-text"> 메뉴 리스트</b>
+            <div class="menu-develop-button" id="menuDevelopButton">
+                <div class="sales-input-menu-text">메뉴 개발</div>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <th>메뉴명</th>
+                <th>수정 날짜</th>
+                <th>현재 판매 상태</th>
+                <th> </th>
+            </tr>
+            <tr id="menuItem" th:each="menu : ${menuListResponse}">
+                <td class="menu-name" th:menu-id="${menu?.menuId?:null}" th:text="${menu?.menuName?:null}"></td>
+                <td class="edited-date" th:text="${menu?.proposalDate?:null}"></td>
+                <td>
+                    <div class="sale-state"
+                         th:menu-id="${menu?.menuId?:null}"
+                         th:text="${menu?.state?:null} ? '판매중' : '판매중지'"
+                         th:style="'color: ' + (${menu.state} ? 'green;' : 'gray;') + ' border: ' + (${menu.state} ? '3px solid green;' : '3px solid gray;')">
+                    </div>
+                </td>
+                <td><div class="delete-menu button-danger" th:menu-id="${menu?.menuId?:null}">삭제</div></td>
+            </tr>
+        </table>
+    </div>
+    <div class="footer">
+    </div>
+</div>
+
+</body>
+<!--</html>-->

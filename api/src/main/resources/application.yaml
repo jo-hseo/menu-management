@@ -1,0 +1,81 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: true
+#    database: postgresql
+  datasource:
+    url: jdbc:postgresql://localhost:5432/menuManagement
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: 1110
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: "gpt-4o"
+          max-completion-tokens: 1000
+#          frequencyPenalty: 0.1f
+          response-format:
+            type: JSON_SCHEMA
+            strict: true
+            schema: {
+              "type": "object",
+              "properties": {
+                "ingredients": {
+                  "type": "array",
+                  "description": "메뉴에 사용된 재료 리스트",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "재료의 이름",
+                        "minLength": 1
+                      },
+                      "amount": {"type": "number", "description": "how many this ingredient used in menu"},
+                      "unit": {"type": "string", "description": "unit of amount"},
+                      "price": {"type": "number", "description": "the price of used ingredient"}
+                    },
+                    "required": ["name", "amount", "unit", "price"],
+                    "additionalProperties": false
+                  }
+                },
+                "procedure": {
+                  "type": "string",
+                  "description": "the procedure to make the menu",
+                  "minLength": 10
+                },
+                "design": {
+                  "type": "string",
+                  "description": "description about image of the menu",
+                  "minLength": 10
+                },
+                "cost": {
+                  "type": "number",
+                  "description": "the sum of ingredient cost",
+                  "minimum": 0
+                },
+                "price": {
+                  "type": "number",
+                  "description": "proper price to sell",
+                  "minimum": 0
+                }
+              },
+              "required": ["ingredients", "procedure", "design", "cost", "price"],
+              "additionalProperties": false
+            }
+
+
+token:
+  secret:
+    key: SpringBootJwtHelperTokenSecretKeyValue123!@#
+  access-token:
+    plus-hour: 1
+  refresh-token:
+    plus-hour: 12

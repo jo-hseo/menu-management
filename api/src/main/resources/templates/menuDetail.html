@@ -1,0 +1,208 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+
+    <link rel="stylesheet"  href="/global.css"/>
+    <link rel="stylesheet"  href="/menudetail/menuDetail.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" />
+
+    <script src="/menudetail/menuDetail.js" defer></script>
+    <script src="/common.js" defer></script>
+
+</head>
+<body>
+
+<div class="div">
+    <div class="header">
+        <div class="icon-block">
+            <div class="icon">
+                <b class="icon-text" id="menuIcon">MENU</b>
+            </div>
+        </div>
+        <div class="navigation-list">
+            <div class="sales-input-menu" id="salesInputMenu">
+                <div class="sales-input-menu-text">매출 입력</div>
+            </div>
+            <div class="menu-menage-menu" id="menuMenageMenu">
+                <div class="sales-input-menu-text">메뉴 관리</div>
+            </div>
+        </div>
+        <div class="auth-menu">
+            <div class="logout-menu" id="logoutMenu">
+                <div class="sales-input-menu-text">로그아웃</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="menu-detail">
+        <div class="page-title">
+            <b class="icon-text">메뉴 수정</b>
+            <div class="button-set">
+                <div class="save-button">
+                    <div class="sales-input-menu-text" id="menuEditSaveButton">저장</div>
+                </div>
+                <div class="save-button">
+                    <div class="sales-input-menu-text" id="menuEditCancelButton">취소</div>
+                </div>
+            </div>
+        </div>
+        <div class="filed">
+            <div class="text-field">
+                <div class="contents">
+                    <input id="menuName" class="menu-name-text" th:menu-id="${menu.id}" th:value="${menu.name}">
+                </div>
+                <div class="subtitle">
+                    <label class="text1" for="menuName">메뉴명</label>
+                </div>
+            </div>
+        </div>
+        <div class="proposal">
+            <div class="text-field">
+                <div class="contents">
+                    <div class="proposal-detail">
+                        <div class="proposal-name">
+                            <label class="proposal-name-label" for="proposalName">기획명</label>
+                            <div class="proposal-name-text">
+                                <input id="proposalName" class="proposal-input-text" th:value="${menu.proposal?.title?:''}">
+                            </div>
+                        </div>
+                        <div class="proposal-name">
+                            <label class="proposal-name-label" for="proposalGoal">목표</label>
+                            <div class="proposal-name-text">
+                                <input id="proposalGoal" class="proposal-input-text" th:value="${menu.proposal?.proposalDetail?.goal?:''}">
+                            </div>
+                        </div>
+                        <div class="proposal-name">
+                            <div class="proposal-name-label">누구에게</div>
+                            <div class="proposal-name-text">
+                                <input id="proposalTarget" class="proposal-input-text" th:value="${menu.proposal?.proposalDetail?.target?:''}">
+                            </div>
+                        </div>
+                        <div class="proposal-name">
+                            <div class="proposal-name-label">언제</div>
+                            <div class="proposal-name-text">
+                                <input id="proposalWhen" class="proposal-input-text" th:value="${menu.proposal?.proposalDetail?.when?:''}">
+                            </div>
+                        </div>
+                        <div class="proposal-name">
+                            <div class="proposal-name-label">어디서</div>
+                            <div class="proposal-name-text">
+                                <input id="proposalWhere" class="proposal-input-text" th:value="${menu.proposal?.proposalDetail?.where?:''}">
+                            </div>
+                        </div>
+                        <div class="proposal-name">
+                            <div class="proposal-name-label">얼마에</div>
+                            <div class="proposal-name-text">
+                                <input id="proposalPrice" class="proposal-input-text" th:value="${menu.proposal?.proposalDetail?.price?:''}">
+                            </div>
+                        </div>
+                        <div class="proposal-name">
+                            <div class="proposal-name-label">얼마나</div>
+                            <div class="proposal-name-text">
+                                <input id="proposalVolume" class="proposal-input-text" th:value="${menu.proposal?.proposalDetail?.volume?:''}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="subtitle1">
+                    <div class="text9">기획서</div>
+                </div>
+            </div>
+        </div>
+<!--        <button id="menuRecommendButton" th:disabled = "${menu.proposal} ? 'enabled' : 'disabled'"-->
+<!--                th:class="${menu.proposal} ? 'enabled-button ai-menu-recommend-button'  : 'disabled-button ai-menu-recommend-button'">-->
+<!--            AI 메뉴 추천-->
+<!--        </button>-->
+        <div class="proposal">
+            <div class="text-field">
+                <div class="contents">
+                    <div class="receipe-detail">
+                        <div class="ingredient">
+                            <div class="label">재료</div>
+
+                            <div class="ingredient-content">
+                                <table id="ingredientTable">
+                                    <thead>
+                                    <tr class="name-head">
+                                        <th>재료명</th>
+                                        <th>수량</th>
+                                        <th>단위</th>
+                                        <th>가격</th>
+                                        <th> </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="list-item" th:each="ingredient : ${menu?.recipe?.ingredients?:null}">
+                                        <td><input class="ingredient-name name" th:value="${ingredient.name}"></td>
+                                        <td><input class="ingredient-amount name" th:value="${ingredient.amount}"></td>
+                                        <td><input class="ingredient-amount-unit name" th:value="${ingredient.amountUnit}"></td>
+                                        <td><input class="ingredient-price name" th:value="${ingredient.price}"></td>
+                                        <td><div id="ingredient-delete-button" style="color: #767676; cursor: pointer;">X</div></td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr id="ingredientTotalCostItem" class="name-head">
+                                        <td colspan="2">총원가</td>
+                                        <td id="ingredientTotalCost" class="name" th:text="${menu?.recipe?.cost?:0}"></td>
+                                        <td> </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="ingredientAddButton" class="add-button" colspan="4">
+                                            <div class="plus">
+                                                <img class="icon1" alt="" src="/menudetail/plusIcon.png">
+                                            </div>
+                                            <div class="text12">재료 추가</div>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="procedure">
+                            <div class="label">제작법</div>
+                            <div class="procedure-contents">
+                                <div class="background">
+                                    <textarea id="recipeProcedure" class="menu-name-text" th:text="${menu.recipe?.procedure?:''}"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="procedure">
+                            <div class="label">디자인</div>
+                            <div class="design-contents">
+                                <img id="recipeDesign" th:src="${menu.recipe?.design?:null}" alt="이미지">
+                                <div class="background">
+                                    <textarea id="recipeDesignDescription" class="menu-name-text" th:text="${menu.recipe?.designDescription?:null}"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="subtitle1">
+                    <div class="text9">레시피</div>
+                </div>
+            </div>
+        </div>
+        <div class="filed">
+            <div class="text-field">
+                <div class="contents">
+                    <div class="price-contents">
+                        <input id="menuPrice" class="menu-name-text" th:value="${menu.price}">
+                    </div>
+                </div>
+                <div class="subtitle">
+                    <div class="text9">가격</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+    </div>
+</div>
+
+</body>
+<!--</html>-->

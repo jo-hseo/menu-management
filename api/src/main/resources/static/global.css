@@ -1,0 +1,181 @@
+
+html, body {
+    margin: 0;
+    line-height: normal;
+    min-width: 700px;
+    height: 100%;
+}
+
+.icon-text {
+    position: relative;
+    letter-spacing: -0.02em;
+    line-height: 120%;
+}
+.icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.icon-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 48px;
+    color: #000;
+}
+.sales-input-menu-text {
+    position: relative;
+    line-height: 100%;
+}
+.sales-input-menu {
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    cursor: pointer;
+}
+.menu-menage-menu {
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    cursor: pointer;
+}
+.navigation-list {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 8px 20px;
+}
+.login-menu, .logout-menu {
+    flex: 1;
+    border-radius: 8px;
+    background-color: #e3e3e3;
+    border: 1px solid #767676;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    cursor: pointer;
+}
+.sign-on-menu {
+    flex: 1;
+    border-radius: 8px;
+    background-color: #2c2c2c;
+    border: 1px solid #2c2c2c;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    color: #f5f5f5;
+    cursor: pointer;
+}
+.auth-menu {
+    width: 178px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+}
+.header {
+    align-self: stretch;
+    background-color: #fff;
+    border-bottom: 1px solid #d9d9d9;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: center;
+    padding: 32px;
+    gap: 0px 24px;
+}
+.page-title {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.footer {
+    width: 1200px;
+    background-color: #fff;
+    border-top: 1px solid #d9d9d9;
+    box-sizing: border-box;
+    /*height: 468px;*/
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.div {
+    width: 100%;
+    position: relative;
+    background-color: #fff;
+    /*height: 1870px;*/
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    font-size: 16px;
+    color: #1e1e1e;
+    font-family: Inter;
+}
+input:focus {
+    outline: none;
+    border-color: #ccc; /* 클릭해도 테두리 색 유지 */
+}
+textarea:focus {
+    outline: none;
+    border-color: #ccc; /* 클릭해도 테두리 색 유지 */
+}
+.button-danger {
+    padding: 8px;
+    color: white;
+    width: fit-content;
+    border-radius: 8px;
+    background-color: #ec221f;
+    border: 1px solid #c00f0c;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+textarea {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 100px;
+    max-height: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+    overflow: auto;
+}
+table {
+    width: 100%;
+    font-size: 20px;
+}
+td input {
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+}

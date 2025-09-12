@@ -1,0 +1,58 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+}
+
+group = 'org.menuservice'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+    maven {
+        name = 'Central Portal Snapshots'
+        url = 'https://central.sonatype.com/repository/maven-snapshots/'
+    }
+}
+
+dependencies {
+    implementation project(':db')
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation("io.jsonwebtoken:jjwt-api:0.12.6")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.6")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.6")
+
+//    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.19.2'
+
+    //OPEN AI
+    implementation 'org.springframework.ai:spring-ai-openai'                           //open ai
+    implementation 'org.springframework.ai:spring-ai-starter-model-openai'             //자동 설정
+    implementation platform("org.springframework.ai:spring-ai-bom:1.0.0-SNAPSHOT")     //디펜던시 메니저
+}
+
+test {
+    useJUnitPlatform()
+}
+
+bootJar {
+    enabled = true
+}
+
+jar {
+    enabled = false
+}
