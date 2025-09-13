@@ -55,6 +55,7 @@ public class MenuApiController {
             @RequestBody Api<Long> request,
             Model model
     ) throws JsonProcessingException {
+
         var menuId = request.getBody();
         var menuEntity = menuService.findMenuById(menuId);
         var menuDetail = menuConverter.toDto(menuEntity);
