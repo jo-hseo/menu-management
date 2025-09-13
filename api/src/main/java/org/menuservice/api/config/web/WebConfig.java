@@ -15,7 +15,8 @@ public class WebConfig implements WebMvcConfigurer {
     private AuthorizationInterceptor authorizationInterceptor;
 
     private List<String> OPEN_API = List.of(
-            "/open-api/**"
+            "/open-api/**",
+            "/swagger-ui/**"
     );
 
     private List<String> DEFUALT_EXCLUDE = List.of(
